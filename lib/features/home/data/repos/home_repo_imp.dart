@@ -24,31 +24,75 @@ class HomeRepoImp implements HomeRepo {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
       }
-      return Left(ServerFailure(errorMessage: e.toString()) );
+      return Left(ServerFailure(errorMessage: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failures, List<MovieModel>>> fetchNowPlayingMovies() {
-    // TODO: implement fetchNowPlayingMovies
-    throw UnimplementedError();
+  Future<Either<Failures, List<MovieModel>>> fetchNowPlayingMovies() async {
+    var data = apiService.get('movie/now_playing?language=en-US&page=1');
+    try {
+      final response = await data;
+      final List<MovieModel> movies = (response['results'] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+      return Right(movies);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failures, List<MovieModel>>> fetchPopularMovies() {
-    // TODO: implement fetchPopularMovies
-    throw UnimplementedError();
+  Future<Either<Failures, List<MovieModel>>> fetchPopularMovies() async {
+    var data = apiService.get('movie/popular?language=en-US&page=1');
+    try {
+      final response = await data;
+      final List<MovieModel> movies = (response['results'] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+      return Right(movies);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failures, List<MovieModel>>> fetchTopRatedMovies() {
-    // TODO: implement fetchTopRatedMovies
-    throw UnimplementedError();
+  Future<Either<Failures, List<MovieModel>>> fetchTopRatedMovies() async {
+    var data = apiService.get('movie/top_rated?language=en-US&page=1');
+    try {
+      final response = await data;
+      final List<MovieModel> movies = (response['results'] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+      return Right(movies);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failures, List<MovieModel>>> fetchcomingMovies() {
-    // TODO: implement fetchcomingMovies
-    throw UnimplementedError();
+  Future<Either<Failures, List<MovieModel>>> fetchcomingMovies() async {
+    var data = apiService.get('movie/upcoming?language=en-US&page=1');
+    try {
+      final response = await data;
+      final List<MovieModel> movies = (response['results'] as List)
+          .map((movie) => MovieModel.fromJson(movie))
+          .toList();
+      return Right(movies);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 }
