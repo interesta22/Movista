@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 import 'package:movista_app/shared/api_service.dart';
 import 'package:movista_app/core/errors/failures.dart';
@@ -10,18 +11,23 @@ class HomeRepoImp implements HomeRepo {
   HomeRepoImp({required this.apiService});
   @override
   Future<Either<Failures, List<MovieModel>>> fetchDiscoverMovies() async {
-    var data = apiService.get('discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc');
+    var data = apiService.get(
+      'discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc',
+    );
     try {
       final response = await data;
-      final List<MovieModel>movies = (response['results'] as List)
+      final List<MovieModel> movies = (response['results'] as List)
           .map((movie) => MovieModel.fromJson(movie))
           .toList();
       return Right(movies);
     } catch (e) {
-      return Left(ServerFailure());
-    }}
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(errorMessage: e.toString()) );
+    }
+  }
 
-    
   @override
   Future<Either<Failures, List<MovieModel>>> fetchNowPlayingMovies() {
     // TODO: implement fetchNowPlayingMovies
