@@ -4,8 +4,8 @@ import 'package:movista_app/core/theme/colors.dart';
 import 'package:movista_app/core/theme/text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NowPlayingMovies extends StatelessWidget {
-  const NowPlayingMovies({
+class DiscoverMovies extends StatelessWidget {
+  const DiscoverMovies({
     super.key,
   });
 

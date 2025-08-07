@@ -7,7 +7,7 @@ import 'package:scrollable_tab_view/scrollable_tab_view.dart';
 import 'package:super_cupertino_navigation_bar/super_cupertino_navigation_bar.dart';
 import 'package:movista_app/features/home/presentation/views/widgets/movie_tab.dart';
 import 'package:movista_app/features/home/presentation/views/widgets/custom_app_bar.dart';
-import 'package:movista_app/features/home/presentation/views/widgets/now_playing_movies.dart';
+import 'package:movista_app/features/home/presentation/views/widgets/discover_movies.dart';
 
 class HomeViewBodyDeep extends StatelessWidget {
   const HomeViewBodyDeep({super.key});
@@ -23,7 +23,7 @@ class HomeViewBodyDeep extends StatelessWidget {
             children: [
               SizedBox(
                 height: 280.h, // حدد ارتفاع مناسب حسب التصميم
-                child: NowPlayingMovies(),
+                child: DiscoverMovies(),
               ),
               verticaalSpacing(16.h),
               SizedBox(
