@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movista_app/features/search/presentation/views/search_view.dart';
+import 'package:movista_app/features/bookmark/presentation/views/bookmark_view.dart';
 import 'package:movista_app/features/home/presentation/views/widgets/customBottomBar.dart';
 import 'package:movista_app/features/home/presentation/views/widgets/home_view_body_deep.dart';
 
@@ -20,7 +21,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     _pages.addAll([
       const HomeViewBodyDeep(),
       const SearchView(),
-      Center(child: Text('GuidesAndInstructions')),
+      const BookmarkView(),
     ]);
   }
 
